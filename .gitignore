@@ -1,5 +1,6 @@
 DS_*
 log
 .idea
-.meteor/local
 node_module
+.meteor/local
+.meteor/meteorite
