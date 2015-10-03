@@ -1,9 +1,3 @@
-Template.trading.helpers({
-  trading: function() {
-    return Router.current().data();
-  }
-});
-
 Template.trading.events({
   "submit .trd-submit": function(event) {
     // Prevent default form submit
