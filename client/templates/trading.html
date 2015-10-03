@@ -1,33 +1,46 @@
 <template name="trading">
-  <h1>Trading</h1>
-  <div class="trading-submit">
-    <form id="trading-submit__form">
-      <input type="text" name="trading-item-title" placeholder="item title"><br>
-      <input type="textbox" name="trading-item-description" placeholder="item description" value=""><br>
-      <button id="trading-item-submit">Submit</button>
-    </form>
-  </div>
-  <div class="trading">
-    <ul class="trading__list">
-      {{#each trading}}
-        <li class="trading__item">
-          <div class="trading__user-profile-img">
-            <img src="{{user_profile_img}}" alt="">
-          </div>
-          <div class="trading__item-title">
-            <span>Item:</span> {{item_title}}
-          </div>
-          <div class="trading__bidder-count">
-            <span>{{bidder_count}}</span>
-          </div>
-          <div class="trading__progress">
-            <input type="checkbox" name="trading__progress" {{trading_progress}}>
-          </div>
-          <div class="trading__remove">
-            
-          </div>
-        </li>
-      {{/each}}
-    </ul>
+  <div class="trd-wrapper">
+    <header class="trd-header">
+      <h1>Trading</h1>
+    </header>
+    <div class="clearfix visible-xs-block"></div>
+    <section class="trd-form container-fluid">
+      <form class="trd-submit row">
+        <input type="text" name="trd-submit__title" class="trd-submit__title col-xs-offset-2 col-xs-8" placeholder="item title"><br>
+        <input type="textbox" name="trd-submit__description" class="trd-submit__description col-xs-offset-2 col-xs-8" placeholder="item description" value=""><br>
+        <button class="trd-submit__button">Submit</button>
+      </form>
+    </section>
+
+    <section class="trd-content">
+      <ul class="trd-list">
+        {{#each trading}}
+          <li class="trd-list__item trd-item media">
+            <div class="trd-item__profile-img media-left media-middle">
+              <img class="media-object img-circle" src="{{profileImg}}" alt="">
+            </div>
+            <div class="trd-item__meta trd-meta media-body container-fluid">
+              <div class="trd-meta__row row">
+                <div class="trd-meta__title col-xs-9">
+                  <a href="{{pathFor route="item.show" data=getItem}}">
+                    <span>Item: {{itemTitle}}</span><br>
+                    {{itemDescription}}
+                  </a>
+                </div>
+                <div class="trd-meta__bidder-count col-xs-1">
+                  <span title="bidding number">{{bidderCount}}</span>
+                </div>
+                <div class="trd-meta__progress col-xs-1">
+                  <input type="checkbox" name="trd-item__progress" {{progress}}>
+                </div>
+                <div class="trd-meta__remove trd-button col-xs-1">
+                  <span class="trd-button__remove glyphicon glyphicon-remove"></span>
+                </div>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
   </div>
 </template>
