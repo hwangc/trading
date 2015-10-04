@@ -1,4 +1,4 @@
-<template name="tradingList">
+<template name="itemList">
   <ul class="trd-list">
     {{#each trading}}
       <li class="trd-list__item trd-item media">
@@ -8,8 +8,8 @@
         <div class="trd-item__meta trd-meta media-body container-fluid">
           <div class="trd-meta__row row">
             <div class="trd-meta__title col-xs-9">
-              <a href="{{ pathFor route="item.show" data=getTrdNo }}">
-                <span>Item: {{itemTitle}}</span><br>
+              <a href="{{ pathFor route="itemShow" data=getItemName }}" class="trd-meta__title-link">
+                <span>Item: {{itemName}}</span><br>
                 {{itemDescription}}
               </a>
             </div>
