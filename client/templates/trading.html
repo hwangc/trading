@@ -1,15 +1,13 @@
 <template name="trading">
   <div class="trd-wrapper">
     <header class="trd-header">
-      <h1>Trading</h1>
+      <a href="{{pathFor route="trading"}}">
+        <h1>Trading</h1>
+      </a>
     </header>
     <div class="clearfix visible-xs-block"></div>
     <section class="trd-form container-fluid">
-      <form class="trd-submit row">
-        <input type="text" name="trd-submit__title" class="trd-submit__title col-xs-offset-2 col-xs-8" placeholder="item title"><br>
-        <input type="textbox" name="trd-submit__description" class="trd-submit__description col-xs-offset-2 col-xs-8" placeholder="item description" value=""><br>
-        <button class="trd-submit__button">Submit</button>
-      </form>
+      {{> yield "trd-submit"}}
     </section>
 
     <section class="trd-content">

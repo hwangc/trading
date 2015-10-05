@@ -15,7 +15,7 @@ Template.itemList.helpers({
     name_uri = name_uri.replace(/[^a-z0-9-]/g, "");
     // Combine multiple dashes (i.e., '---') into one dash '-'.
     name_uri = name_uri.replace(/[-]+/g, "-");
-    
+
     return {name: name_uri};
   }
 });

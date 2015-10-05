@@ -4,9 +4,9 @@ Template.trading.events({
     event.preventDefault();
     var title = '',desc = '',id = '';
     // get the title
-    title = event.target.children["trd-submit__title"].value;
+    title = $(event.target).find(".trd-submit__title").val();
     // get the description
-    desc = event.target.children["trd-submit__description"].value;
+    desc = $(event.target).find(".trd-submit__description").val();
     // save them to Trading Collection
     if(title && desc){
       id = Trading.insert({
@@ -19,10 +19,10 @@ Template.trading.events({
       });
     }
     try {
-      if(!id){
+      if(id){
         // Empty the input values
-        event.target.children["trd-submit__title"].value = '';
-        event.target.children["trd-submit__description"].value = '';
+        $(event.target).find(".trd-submit__title").val('');
+        $(event.target).find(".trd-submit__description").val('');
       } else {
         throw "Sorry, it hasn't added.";
       }
