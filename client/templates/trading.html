@@ -1,13 +1,13 @@
 <template name="trading">
   <div class="trd-wrapper">
     <header class="trd-header">
-      <a href="{{pathFor route="trading"}}">
-        <h1>Trading</h1>
+      <a href="{{pathFor route="trading"}}" class="trd-header__title-link">
+        <h1 class="trd-header__title-text">Trading</h1>
       </a>
     </header>
     <div class="clearfix visible-xs-block"></div>
     <section class="trd-form container-fluid">
-      {{> yield "trd-submit"}}
+      {{> yield "submit-show"}}
     </section>
 
     <section class="trd-content">

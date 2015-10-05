@@ -4,12 +4,21 @@
     <h1>{{itemName}} <small>Conversation</small></h1>
   </div>
   I want to trade {{itemDescription}}.
-  {{> yield "buyer-show"}}
+  {{> yield "buyer-show" }}
 </template>
 
 <template name="buyerShow">
+  <div class="trd-buyer-panel panel panel-default">
+    <div class="trd-buyer-panel__body panel-body">
+      Buyers {{count}}
+      <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group" role="group" aria-label="...">
+        <button type="button" class="trd-buttons__bidding btn btn-default">Bidding</button>
+        <button type="button" class="trd-buttons__favorite btn btn-default">Favorite</button>
+      </div>
+    </div>
+  </div>
   <ul class="trd-list trd-list--buyers">
-    {{! #each}}
+    {{#each buyers}}
       <li class="trd-list__item trd-item media">
         <div class="trd-item__profile-img media-left media-middle">
           <img class="media-object img-circle" src="{{profileImg}}" alt="">
@@ -28,6 +37,6 @@
           </div>
         </div>
       </li>
-    {{! /each}}
+    {{/each}}
   </ul>
 </template>
