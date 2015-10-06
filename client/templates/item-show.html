@@ -1,6 +1,6 @@
 <template name="itemShow">
   <!-- show the title of the trading item -->
-  <div class="page-header">
+  <div id="trd-item-show" class="page-header">
     <h1>{{itemName}} <small>Conversation</small></h1>
   </div>
   I want to trade {{itemDescription}}.
@@ -19,6 +19,7 @@
   </div>
   <div class="trd-my-items"></div>
   {{> yield "buyer-items"}}
+  {{#if buyers}}
   <ul class="trd-list trd-list--buyers">
     {{#each buyers}}
       <li class="trd-list__item trd-item media">
@@ -41,6 +42,7 @@
       </li>
     {{/each}}
   </ul>
+  {{/if}}
 </template>
 
 <template name="myItems">
