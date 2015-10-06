@@ -1,9 +1,10 @@
 <template name="trading">
-  <div class="trd-wrapper">
-    <header class="trd-header">
-      <a href="{{pathFor route="trading"}}" class="trd-header__title-link">
+  <div class="trd-wrapper container">
+    <header class="trd-header row">
+      <a href="{{pathFor route="trading"}}" class="trd-header__title-link col-xs-3">
         <h1 class="trd-header__title-text">Trading</h1>
       </a>
+      {{> loginButtons align="right"}}
     </header>
     <div class="clearfix visible-xs-block"></div>
     <section class="trd-form container-fluid">

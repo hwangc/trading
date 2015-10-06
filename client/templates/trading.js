@@ -17,7 +17,7 @@ Template.trading.events({
     if(title && desc){
       docId = Trading.insert({
         userID: Meteor.userId(),
-        profileImg: Meteor.absoluteUrl("img/user-50x50.png"),
+        profileImg: Meteor.absoluteUrl("img/user-50x50.png"),  
         itemName: title,
         itemDescription: desc,
         bidderCount: 0,

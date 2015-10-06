@@ -23,3 +23,5 @@ less
 launch-screen
 twbs:bootstrap
 accounts-password
+accounts-ui
+utilities:avatar

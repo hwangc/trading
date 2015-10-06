@@ -10,5 +10,9 @@ Meteor.publish("buyers", function(){
   // user createdAt
   // profile
   // services
-  return Buyers.find({});
+  if (this.userId) {
+    return Meteor.users.find({_id: this.userId});
+  } else {
+    this.ready();
+  }
 });

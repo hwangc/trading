@@ -17,6 +17,8 @@
       </div>
     </div>
   </div>
+  <div class="trd-my-items"></div>
+  {{> yield "buyer-items"}}
   <ul class="trd-list trd-list--buyers">
     {{#each buyers}}
       <li class="trd-list__item trd-item media">
@@ -39,4 +41,17 @@
       </li>
     {{/each}}
   </ul>
+</template>
+
+<template name="myItems">
+  <h3>My items</h3>
+  <form action="">
+    <label for="trd-my-item">Select My Item</label>
+    <select id="trd-my-item" name="trd-my-item" class="form-control">
+      {{#each myItems}}
+      <option value="{{_id}}">{{itemName}}</option>
+      {{/each}}
+    </select>
+    <button class="trd-submit__button">Bid!</button>
+  </form>
 </template>
