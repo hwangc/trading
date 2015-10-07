@@ -8,7 +8,6 @@ Template.buyerShow.helpers({
     if (bidderCount < 1) {
       return 'Please bid for the item';
     }
-
     return bidderCount;
   }
 });
@@ -19,21 +18,17 @@ Template.buyerShow.events({
     var $target = $(event.target);
     // check if the button is already clicked
     if( $target.hasClass("trd-buttons__bidding--on") ) {
-
-      var myItemViewEl = document.getElementById('trd-my-item');
-      // get the my item view
-      var myItemView = Blaze.getView(myItemViewEl);
       // remove the my item
-      Blaze.remove(myItemView);
+      removeViewById('trd-my-item');
       // remove the class flag
       $target.removeClass("trd-buttons__bidding--on active");
 
     } else {
-      // set the flag
+      // set the active flag
       $target.addClass("trd-buttons__bidding--on active");
       // show user Array items
       var buyerItem = Trading.find({userID: Meteor.userId()});
-      // make a template with the data and insert it to buyer panel
+      // render a template with the data and insert it to buyer panel
       Blaze.renderWithData( Template.myItems, buyerItem, template.find(".trd-my-items"));
       // submit
       // if no items, show the input box
@@ -52,29 +47,35 @@ Template.myItems.events({
 
     event.preventDefault();
 
+    // get the view obj
+    var itemShowView = getViewById('trd-item-show');
+    // get the item show data
+    var itemData = Blaze.getData(itemShowView);
+    // get the item id
     var selectedItemID = $("#trd-my-item").val();
     // set the bidder info
     var bidder = { userID: Meteor.userId(), itemID: selectedItemID };
-    // get the item show element
-    var itemShowEl = document.getElementById('trd-item-show');
-    // get the item show view
-    var itemShowView = Blaze.getView(itemShowEl);
-    // get the item show data
-    var itemData = Blaze.getData(itemShowView);
-
     // Update the trading item with the bidder info
     var result = Trading.update(
       { _id: itemData._id },
       { $addToSet: { bidders: bidder } }
     );
-    // remove the blaze view
-    var myItemViewEl = document.getElementById('trd-my-item');
-    // get the my item view
-    var myItemView = Blaze.getView(myItemViewEl);
-    // remove the my item
-    Blaze.remove(myItemView);
+    // remove my item view
+    removeViewById('trd-my-item');
     // remove the class flag
     $(".trd-buttons__bidding").removeClass("trd-buttons__bidding--on active");
-
   }
 });
+
+var getViewById = function(selector) {
+  // get the item show element
+  var el = document.getElementById(selector);
+  console.log(Blaze.getView(el));
+  // return the item show view
+  return Blaze.getView(el);
+}
+
+var removeViewById = function(selector) {
+  var view = getViewById(selector);
+  Blaze.remove(view);
+}

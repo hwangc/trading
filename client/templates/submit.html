@@ -4,35 +4,46 @@
       <label for="trd-submit__title">Name</label>
       <input type="text" name="trd-submit__title" class="trd-submit__title form-control" placeholder="item title" value="">
     </div>
-    <div class="form-group">
+    <div class="trd-submit__cat form-group">
       <label for="trd-submit__cat sr-only">Category</label>
-      <div class="btn-group btn-group-justified" role="group" aria-label="Choose category">
+      <div class="btn-group btn-group-justified" role="group" data-toggle="buttons" aria-label="Choose category">
         <div class="btn-group" role="group">
-          <select class="form-control">
-            <option selected disabled>Choose one</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <label for="categoryProduct" class="btn btn-default" autocomplete="off">
+            <input type="radio" name="categoryProduct" value="product">
+            Product <span class="label label-success"></span>
+          </label>
         </div>
         <div class="btn-group" role="group">
-          <select class="form-control">
-            <option selected disabled>Choose one</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+          <label for="categoryService" class="btn btn-default" autocomplete="off">
+            <input type="radio" name="categoryService" value="service">
+            Service <span class="label label-success"></span>
+          </label>
+        </div>
+        <div class="btn-group" role="group">
+          <label for="categoryOthers" class="btn btn-default" autocomplete="off">
+            <input type="radio" name="categoryOthers" value="others">
+            Others <span class="label label-success"></span>
+          </label>
         </div>
       </div>
     </div>
+    {{#if catSel}}
+    {{> subCategory}}
+    {{/if}}
     <div class="form-group">
       <label for="trd-submit__description">Description</label>
       <textarea name="trd-submit__description" class="trd-submit__description form-control" placeholder="item description" rows="3" value=""></textarea>
     </div>
     <button class="trd-submit__button">Submit</button>
   </form>
+</template>
+
+<template name="subCategory">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each subCat}}
+        <span class="label label-success">{{this}}</span>
+      {{/each}}
+    </div>
+  </div>
 </template>
