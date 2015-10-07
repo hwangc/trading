@@ -20,6 +20,8 @@ Template.trading.events({
         profileImg: Meteor.absoluteUrl("img/user-50x50.png"),
         itemName: title,
         itemDescription: desc,
+        category: 'product',
+        tag: 'computer',
         slug: strToURL(title),
         bidderCount: 0,
         progress: "unchecked",
