@@ -11,9 +11,19 @@
   <div class="trd-buyer-panel panel panel-default">
     <div class="trd-buyer-panel__body panel-body">
       Buyers {{count}}
-      <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group" role="group" aria-label="...">
-        <button type="button" class="trd-buttons__bidding btn btn-default">Bidding</button>
-        <button type="button" class="trd-buttons__favorite btn btn-default">Favorite</button>
+      <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group pull-right" role="group" data-toggle="buttons" aria-label="...">
+        <div class="btn-group" role="group">
+          <label for="bidding" class="trd-buttons__bidding btn btn-default" autocomplete="off">
+            <input type="radio" name="bidding" value="product">
+            Bidding
+          </label>
+        </div>
+        <div class="btn-group" role="group">
+          <label for="favorite" class="btn btn-default" autocomplete="off">
+            <input type="radio" name="favorite" value="favorite">
+            Favorite
+          </label>
+        </div>
       </div>
     </div>
   </div>

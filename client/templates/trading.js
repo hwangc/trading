@@ -1,5 +1,5 @@
 Template.trading.events({
-  "submit .trd-submit": function(event) {
+  "submit .trd-submit": function(event, template) {
     // Prevent default form submit
     event.preventDefault();
 
@@ -10,9 +10,9 @@ Template.trading.events({
 
     var title = '',desc = '', docId = '';
     // get the title
-    title = $(event.target).find(".trd-submit__title").val();
+    title = template.$(".trd-submit__title").val();
     // get the description
-    desc = $(event.target).find(".trd-submit__description").val();
+    desc = template.$(".trd-submit__description").val();
     // save them to Trading Collection
     if(title && desc){
       docId = Trading.insert({
@@ -32,8 +32,8 @@ Template.trading.events({
     try {
       if(docId){
         // Empty the input values
-        $(event.target).find(".trd-submit__title").val('');
-        $(event.target).find(".trd-submit__description").val('');
+        template.$(".trd-submit__title").val('');
+        template.$(".trd-submit__description").val('');
       } else {
         throw "Sorry, it hasn't added.";
       }
@@ -48,8 +48,8 @@ Template.trading.events({
     // this is the data context of the trading
     Trading.remove({_id:this._id});
   },
-  "click .trd-header__title-link": function () {
-    $(".trd-submit__title").val('');
-    $(".trd-submit__description").val('');
+  "click .trd-header__title-link": function (event, template) {
+    template.$(".trd-submit__title").val('');
+    template.$(".trd-submit__description").val('');
   }
 });
