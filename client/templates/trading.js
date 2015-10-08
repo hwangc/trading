@@ -8,11 +8,15 @@ Template.trading.events({
       return alert("Please sign in or create an account to submit an item.");
     }
 
-    var title = '',desc = '', docId = '';
+    var title = '',desc = '', tags = [], cat = '', docId = '';
     // get the title
     title = template.$(".trd-submit__title").val();
     // get the description
     desc = template.$(".trd-submit__description").val();
+    // set a cat object
+    cat = Session.get("selectedCat");
+    // get the sub category
+    tags = Session.get("tags");
     // save them to Trading Collection
     if(title && desc){
       docId = Trading.insert({
@@ -20,8 +24,8 @@ Template.trading.events({
         profileImg: Meteor.absoluteUrl("img/user-50x50.png"),
         itemName: title,
         itemDescription: desc,
-        category: 'product',
-        tag: 'computer',
+        category: cat,
+        tags: tags,
         slug: strToURL(title),
         bidderCount: 0,
         progress: "unchecked",
@@ -34,6 +38,8 @@ Template.trading.events({
         // Empty the input values
         template.$(".trd-submit__title").val('');
         template.$(".trd-submit__description").val('');
+        // close the category box
+        Session.set("catSel", false);
       } else {
         throw "Sorry, it hasn't added.";
       }

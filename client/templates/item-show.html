@@ -4,6 +4,13 @@
     <h1>{{itemName}} <small>Conversation</small></h1>
   </div>
   I want to trade {{itemDescription}}.
+  <div class="trd-item-cats">
+    Category: {{category}}
+    Tags: 
+    {{#each tags}}
+    {{this}}
+    {{/each}}
+  </div>
   {{> yield "buyer-show" }}
 </template>
 
@@ -11,18 +18,12 @@
   <div class="trd-buyer-panel panel panel-default">
     <div class="trd-buyer-panel__body panel-body">
       Buyers {{count}}
-      <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group pull-right" role="group" data-toggle="buttons" aria-label="...">
+      <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group pull-right" role="group" aria-label="...">
         <div class="btn-group" role="group">
-          <label for="bidding" class="trd-buttons__bidding btn btn-default" autocomplete="off">
-            <input type="radio" name="bidding" value="product">
-            Bidding
-          </label>
+          <label for="bidding" class="trd-buttons__bidding btn btn-default" autocomplete="off">Bidding</label>
         </div>
         <div class="btn-group" role="group">
-          <label for="favorite" class="btn btn-default" autocomplete="off">
-            <input type="radio" name="favorite" value="favorite">
-            Favorite
-          </label>
+          <label for="favorite" class="btn btn-default" autocomplete="off">Favorite</label>
         </div>
       </div>
     </div>
@@ -58,12 +59,16 @@
 <template name="myItems">
   <h3>My items</h3>
   <form action="">
-    <label for="trd-my-item">Select My Item</label>
-    <select id="trd-my-item" name="trd-my-item" class="form-control">
-      {{#each myItems}}
-      <option value="{{_id}}">{{itemName}}</option>
-      {{/each}}
-    </select>
-    <button class="trd-submit__button">Bid!</button>
+    <div class="form-group">
+      <label for="trd-my-item">Select My Item</label>
+      <select id="trd-my-item" name="trd-my-item" class="form-control">
+        {{#each myItems}}
+        <option value="{{_id}}">{{itemName}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group">
+      <button class="trd-submit__button form-control">Bid!</button>
+    </div>
   </form>
 </template>

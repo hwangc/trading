@@ -1,3 +1,9 @@
+// Template.itemShow.helpers({
+//   category: function() {
+//     console.log(this);
+//     return this;
+//   }
+// });
 Template.buyerShow.helpers({
   buyers: function() {
     // this data( cursor )context from router for buyerShow template
@@ -21,7 +27,7 @@ Template.buyerShow.events({
       // remove the my item
       removeViewById('trd-my-item');
       // remove the class flag
-      $target.removeClass("trd-buttons__bidding--on active");
+      $target.toggleClass("trd-buttons__bidding--on active");
 
     } else {
       // set the active flag
@@ -70,7 +76,6 @@ Template.myItems.events({
 var getViewById = function(selector) {
   // get the item show element
   var el = document.getElementById(selector);
-  console.log(Blaze.getView(el));
   // return the item show view
   return Blaze.getView(el);
 }
