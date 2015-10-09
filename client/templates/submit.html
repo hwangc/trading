@@ -1,29 +1,23 @@
 <template name="submit">
-  <form class="trd-submit row">
+  <form class="trd-submit">
     <div class="form-group">
       <label for="trd-submit__title">Name</label>
       <input type="text" name="trd-submit__title" class="trd-submit__title form-control" placeholder="item title" value="">
     </div>
     <div class="trd-submit__cat form-group">
       <label for="trd-submit__cat">Category</label>
-      <div class="trd-submit__btn-group btn-group btn-group-justified" role="group" data-toggle="buttons" aria-label="Choose category">
+      <div class="trd-submit__btn-group btn-group btn-group-justified" role="group" aria-label="Choose category">
         <div class="btn-group" role="group">
-          <label for="categoryProduct" class="trd-submit__btn--product btn btn-default" autocomplete="off">
-            <input type="radio" name="categoryProduct" value="product">
-            Product
-          </label>
+          <label for="categoryProduct" class="sr-only" autocomplete="off">Product</label>
+            <input type="button" name="categoryProduct" class="trd-submit__btn--product btn btn-default" value="product">
         </div>
         <div class="btn-group" role="group">
-          <label for="categoryService" class="trd-submit__btn--service btn btn-default" autocomplete="off">
-            <input type="radio" name="categoryService" value="service">
-            Service
-          </label>
+          <label for="categoryService" class="sr-only" autocomplete="off">Service</label>
+          <input type="button" name="categoryService" class="trd-submit__btn--service btn btn-default" value="service">
         </div>
         <div class="btn-group" role="group">
-          <label for="categoryOthers" class="trd-submit__btn--others btn btn-default" autocomplete="off">
-            <input type="radio" name="categoryOthers" value="others">
-            Others
-          </label>
+          <label for="categoryOthers" class="sr-only" autocomplete="off">Others</label>
+            <input type="button" name="categoryOthers" class="trd-submit__btn--others btn btn-default" value="others">
         </div>
       </div>
     </div>
@@ -37,6 +31,7 @@
     </div>
     <button class="trd-submit__button">Submit</button>
   </form>
+  {{> searchBox}}
 </template>
 
 <template name="subCategory">
@@ -48,4 +43,27 @@
       {{/each}}
     </div>
   </div>
+</template>
+
+<template name="searchBox">
+  <label for="">Search</label>
+  <div class="form-group">
+  {{> esInput index="trading" class="form-control" placeholder="Search..." }}
+  </div>
+
+  <ul>
+    {{#esEach index="trading"}}
+      <li><a href="/item/{{slug}}">{{itemName}} ({{itemDescription}})</a></li>
+    {{/esEach}}
+  </ul>
+
+  {{> esLoadMoreButton index="trading"}}
+
+  {{#ifEsHasNoResults index="trading"}}
+    <div class="no-results">No results found!</div>
+  {{/ifEsHasNoResults}}
+
+  {{#ifEsIsSearching index="trading"}}
+    <div>Loading...</div>
+  {{/ifEsIsSearching}}
 </template>

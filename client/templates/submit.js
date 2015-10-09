@@ -6,7 +6,7 @@ Template.submit.helpers({
 Template.submit.events({
   "click .trd-submit__cat .btn": function(event, template){
     // select the category and get the value
-    var selectedCat = $(event.target).children("input").val();
+    var selectedCat = $(event.target).val();
     // catSel: category selected and selectedCat: the value of the category
     Session.set({
       "catSel": true,
