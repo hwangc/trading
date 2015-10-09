@@ -1,9 +1,3 @@
-// Template.itemShow.helpers({
-//   category: function() {
-//     console.log(this);
-//     return this;
-//   }
-// });
 Template.buyerShow.helpers({
   buyers: function() {
     // this data( cursor )context from router for buyerShow template

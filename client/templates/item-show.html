@@ -7,9 +7,11 @@
   <div class="trd-item-cats">
     Category: {{category}}
     Tags:
-    {{#each tags}}
-    {{this}}
-    {{/each}}
+    {{#if tags}}
+      {{#each tags}}
+        {{this}}
+      {{/each}}
+    {{/if}}
   </div>
   {{> yield "buyer-show" }}
 </template>
