@@ -9,6 +9,9 @@ Template.buyerShow.helpers({
       return 'Please bid for the item';
     }
     return bidderCount;
+  },
+  getItemName: function() {
+    return {name: this.slug};
   }
 });
 

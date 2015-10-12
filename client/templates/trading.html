@@ -5,8 +5,13 @@
         <h1 class="trd-header__title-text">Trading</h1>
       </a>
       <div class="trd-login col-xs-offset-7">
-      {{> loginButtons }}
+        {{> loginButtons }}
       </div>
+      {{#if currentUser}}
+      <div class="trd-user col-xs-offset-7">
+        <a href="{{ pathFor route="userItemList" data=getUserId }}">My Item</a>
+      </div>
+      {{/if}}
     </header>
     <div class="clearfix visible-xs-block"></div>
     <section class="trd-form container-fluid">
