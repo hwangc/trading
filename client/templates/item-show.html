@@ -22,12 +22,14 @@
     <div class="trd-buyer-panel__body panel-body">
       Buyers {{count}}
       <div class="trd-buyer-panel__button trd-buttons trd-buttons--item-page btn-group pull-right" role="group" aria-label="...">
+        {{#unless isMyItem}}
         <div class="btn-group" role="group">
           <label for="bidding" class="trd-buttons__bidding btn btn-default" autocomplete="off">Bidding</label>
         </div>
         <div class="btn-group" role="group">
           <label for="favorite" class="btn btn-default" autocomplete="off">Favorite</label>
         </div>
+        {{/unless}}
       </div>
     </div>
   </div>

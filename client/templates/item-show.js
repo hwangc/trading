@@ -21,29 +21,40 @@ Template.buyerShow.helpers({
   },
   getItemName: function() {
     return {name: this.slug};
+  },
+  isMyItem: function() {
+
+    if(Meteor.userId() === Template.parentData([2]).userID) {
+      Session.set("isMyItem", true);
+      return true;
+    }
+    Session.set("isMyItem", false);
+    return false;
   }
 });
 
 Template.buyerShow.events({
   "click .trd-buttons__bidding": function(event, template) {
 
-    var $target = $(event.target);
-    // check if the button is already clicked
-    if( $target.hasClass("trd-buttons__bidding--on") ) {
-      // remove the my item
-      removeViewById('trd-my-item');
-      // remove the class flag
-      $target.toggleClass("trd-buttons__bidding--on active");
+    if(Session.equals("isMyItem", false)) {
+      var $target = $(event.target);
+      // check if the button is already clicked
+      if( $target.hasClass("trd-buttons__bidding--on") ) {
+        // remove the my item
+        removeViewById('trd-my-item');
+        // remove the class flag
+        $target.toggleClass("trd-buttons__bidding--on active");
 
-    } else {
-      // set the active flag
-      $target.addClass("trd-buttons__bidding--on active");
-      // show user Array items
-      var buyerItem = Trading.find({userID: Meteor.userId()});
-      // render a template with the data and insert it to buyer panel
-      Blaze.renderWithData( Template.myItems, buyerItem, template.find(".trd-my-items"));
-      // submit
-      // if no items, show the input box
+      } else {
+        // set the active flag
+        $target.addClass("trd-buttons__bidding--on active");
+        // show user Array items
+        var buyerItem = Trading.find({userID: Meteor.userId()});
+        // render a template with the data and insert it to buyer panel
+        Blaze.renderWithData( Template.myItems, buyerItem, template.find(".trd-my-items"));
+        // submit
+        // if no items, show the input box
+      }
     }
   }
 });
