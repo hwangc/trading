@@ -2,12 +2,39 @@
 if (Meteor.isServer) {
   Meteor.startup(function () {
 
-    if (Trading.find().count() < 20) {
+    // Create in 25 fake users.
+
+    // If the user count ever falls below 25 this code will
+    // make sure that you ALWAYS have 25 fresh users to
+    // do with what you will. Be sure to place this
+    // in your Meteor.startup or a Tracker.deps block
+    if(Meteor.users.find().count() < 25) {
+      _.each(_.range(25), function(){
+
+        var randomEmail = faker.internet.email();
+        var randomName = faker.name.findName();
+        var userName = faker.internet.userName();
+
+        Accounts.createUser({
+          username: userName,
+          profile: {
+            name: randomName,
+          },
+          email: randomEmail,
+          password: 'hoyun80'
+        });
+      });
+    }
+
+    var userFetch = Meteor.users.find().fetch();
+
+    if (Trading.find().count() < 30) {
 
       for (var i = 0; i < 20; i++) {
 
         // var randomCat = function() {
-        var ranCat = '', ranTag = [], slug = '', name = '';
+
+        var ranCat = '', ranTag = [], slug = '', name = '', userId = null;
 
         ranCat = Random.choice(['product', 'service']);
 
@@ -29,8 +56,10 @@ if (Meteor.isServer) {
 
         slug = strToURL(name);
 
+        userId = _.sample(userFetch, 1);
+
         Trading.insert({
-          userID: Meteor.users.findOne()._id,
+          userID: userId[0]._id,
           profileImg: Meteor.absoluteUrl("img/user-50x50.png"),
           itemName: name,
           itemDescription: Fake.sentence([5]),

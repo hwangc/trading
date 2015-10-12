@@ -1,3 +1,8 @@
+Template.trading.helpers({
+  getUserId: function() {
+    return {id: Meteor.userId()};
+  }
+});
 Template.trading.events({
   "submit .trd-submit": function(event, template) {
     // Prevent default form submit

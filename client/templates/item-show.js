@@ -1,3 +1,12 @@
+Template.itemShow.helpers({
+  username: function(){
+    return Meteor.users.findOne( { _id: this.userID } ).username;
+  },
+  email: function() {
+    return Meteor.users.findOne( { _id: this.userID } ).emails[0].address;
+  }
+});
+
 Template.buyerShow.helpers({
   buyers: function() {
     // this data( cursor )context from router for buyerShow template
@@ -9,6 +18,9 @@ Template.buyerShow.helpers({
       return 'Please bid for the item';
     }
     return bidderCount;
+  },
+  getItemName: function() {
+    return {name: this.slug};
   }
 });
 

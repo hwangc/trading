@@ -1,0 +1,36 @@
+<template name="userItemList">
+  <!-- show the user item -->
+  <div id="trd-user-item-show" class="page-header">
+    <h1>User <small>items</small></h1>
+  </div>
+  <ul class="trd-list">
+    {{#each trading}}
+      <li class="trd-list__item trd-item media">
+        <div class="trd-item__profile-img media-left media-middle">
+          <img class="media-object img-circle" src="{{profileImg}}" alt="">
+        </div>
+        <div class="trd-item__meta trd-meta media-body container-fluid">
+          <div class="trd-meta__row row">
+            <div class="trd-meta__title col-xs-9">
+              {{! #with itemShow}}
+              <a href="{{ pathFor route="itemShow" data=getItemName }}" class="trd-meta__title-link">
+              {{! /with}}
+                <span>Item: {{itemName}}</span><br>
+                {{itemDescription}}
+              </a>
+            </div>
+            <div class="trd-meta__bidder-count col-xs-1">
+              <span title="bidding number">{{count}}</span>
+            </div>
+            <div class="trd-meta__progress col-xs-1">
+              <input type="checkbox" name="trd-item__progress" {{progress}}>
+            </div>
+            <div class="trd-meta__remove trd-button col-xs-1">
+              <span class="trd-button__remove glyphicon glyphicon-remove"></span>
+            </div>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</template>
